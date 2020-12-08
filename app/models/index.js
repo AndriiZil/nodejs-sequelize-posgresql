@@ -24,6 +24,12 @@ db.actors = require('./actors.model')(sequelize);
 db.actorsMovies = require('./actors.movies.model')(sequelize);
 db.products = require('./products.model')(sequelize);
 db.tags = require('./tags.model')(sequelize);
+db.profiles = require('./profiles.model')(sequelize);
+db.persons = require('./persons.model')(sequelize);
+
+// Many to many relationship
+db.persons.belongsToMany(db.profiles, { through: 'user_profiles' });
+db.profiles.belongsToMany(db.persons, { through: 'user_profiles' });
 
 db.users.hasOne(db.addresses); // Address has userId
 db.addresses.belongsTo(db.users, {

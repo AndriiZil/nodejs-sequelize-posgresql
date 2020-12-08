@@ -17,6 +17,9 @@ module.exports = app => {
 
     router.post('/actors', Controller.createActorWithMovie);
 
+    router.post('/persons-profiles', Controller.createPersonsWithProfiles);
+    router.get('/persons-profiles', Controller.gePersonWithProfiles);
+
     router.post('/courses', Controller.createCourse);
     router.get('/courses', Controller.findAllCourses);
     router.get('/courses/:id', Controller.findCourseById);

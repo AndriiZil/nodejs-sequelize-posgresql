@@ -1,7 +1,8 @@
 const { createCourse, findCourseById, findAllCourses } = require('../services/courses.service');
 const { createUser, findUserById, findAllUsers } = require('../services/users.service');
 const { createAddress, findAllAddresses } = require('../services/addresses.service');
-const { createProduct } = require('../services/product.service')
+const { createProduct } = require('../services/product.service');
+const { createPersonProfiles, getPersonProfiles } = require('../services/persons.profiles.service')
 
 exports.createUserWithAddress = async (req, res, next) => {
     try {
@@ -122,7 +123,7 @@ exports.findAllCourses = async (req, res, next) => {
         const comments = await findAllCourses();
 
         return res.send(comments);
-    } catch (err) {
+    } catch (err) {POST
         next(err);
     }
 }
@@ -161,6 +162,32 @@ exports.createProduct = async (req, res, next) => {
             success: true,
             data: product
         })
+    } catch (err) {
+        next(err);
+    }
+}
+
+exports.createPersonsWithProfiles = async (req, res, next) => {
+    try {
+        const person = await createPersonProfiles();
+
+        return res.json({
+            success: true,
+            data: person
+        });
+    } catch (err) {
+        next(err);
+    }
+}
+
+exports.gePersonWithProfiles = async (req, res, next) => {
+    try {
+        const result = await getPersonProfiles();
+
+        return res.json({
+            success: true,
+            data: result
+        });
     } catch (err) {
         next(err);
     }
